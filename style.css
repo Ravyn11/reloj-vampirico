@@ -1,7 +1,12 @@
+
+html,
 body {
-  background: transparent;
+  background-color: #160F0C;
   margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
+
 
 .clock-card {
   background: #1B120F;
