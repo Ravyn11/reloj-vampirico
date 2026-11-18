@@ -1,0 +1,234 @@
+body {
+  background: transparent;
+  margin: 0;
+}
+
+.clock-card {
+  background: #1B120F;
+  border: 1px solid #4A2920;
+  border-radius: 15px;
+  padding: 22px;
+  text-align: center;
+  font-family: Georgia, serif;
+  box-shadow: 0 0 15px #160F0C;
+}
+
+.ornament {
+  color: #A34E43;
+  font-size: 17px;
+  letter-spacing: 6px;
+  animation: floating 4s ease-in-out infinite;
+}
+
+.clock-title {
+  color: #B89A7A;
+  font-size: 11px;
+  letter-spacing: 5px;
+  margin: 14px 0;
+}
+
+#clock {
+  color: #D1BFA5;
+  font-size: 38px;
+  letter-spacing: 3px;
+  animation: bloodGlow 3s ease-in-out infinite;
+}
+
+#date {
+  color: #B89A7A;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.quote {
+  color: #8B302F;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* CLOCK GLOW */
+
+@keyframes bloodGlow {
+  0%, 100% {
+    text-shadow: 0 0 3px #4A2920;
+    opacity: 0.85;
+  }
+
+  50% {
+    text-shadow:
+      0 0 8px #8B302F,
+      0 0 18px #71352D;
+    opacity: 1;
+  }
+}
+
+/* FLOATING SYMBOLS */
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+/* CANDLELIGHT */
+.clock-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      #49251D 0%,
+      #281812 45%,
+      #160F0C 100%
+    );
+
+  animation: candleFlicker 5s infinite;
+}
+
+/* WARM CANDLE GLOW */
+.clock-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+
+  background: radial-gradient(
+    circle at 50% 45%,
+    #8B302F30,
+    #71352D15 35%,
+    transparent 70%
+  );
+
+  animation: candleGlow 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes candleGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes candleFlicker {
+  0%, 100% {
+    box-shadow: 0 0 12px #71352D15;
+  }
+
+  40% {
+    box-shadow: 0 0 18px #8B302F30;
+  }
+
+  60% {
+    box-shadow: 0 0 10px #4A292020;
+  }
+}
+
+/* FLOATING DUST */
+.dust {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dust span {
+  position: absolute;
+  bottom: -10px;
+  width: 3px;
+  height: 3px;
+  background: #B89A7A;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px #B89A7A;
+  animation: dustFloat linear infinite;
+}
+
+.dust span:nth-child(1) {
+  left: 10%;
+  animation-duration: 7s;
+}
+
+.dust span:nth-child(2) {
+  left: 25%;
+  animation-duration: 10s;
+  animation-delay: 2s;
+}
+
+.dust span:nth-child(3) {
+  left: 40%;
+  animation-duration: 8s;
+  animation-delay: 1s;
+}
+
+.dust span:nth-child(4) {
+  left: 55%;
+  animation-duration: 11s;
+  animation-delay: 4s;
+}
+
+.dust span:nth-child(5) {
+  left: 70%;
+  animation-duration: 9s;
+  animation-delay: 3s;
+}
+
+.dust span:nth-child(6) {
+  left: 85%;
+  animation-duration: 12s;
+  animation-delay: 1s;
+}
+
+.dust span:nth-child(7) {
+  left: 35%;
+  animation-duration: 13s;
+  animation-delay: 5s;
+}
+
+.dust span:nth-child(8) {
+  left: 95%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
+
+@keyframes dustFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-100px) translateX(12px);
+    opacity: 0.5;
+  }
+
+  85% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(-220px) translateX(-8px);
+    opacity: 0;
+  }
+}
+
+/* KEEP TEXT ABOVE THE DUST */
+.clock-card > *:not(.dust) {
+  position: relative;
+  z-index: 1;
+}
